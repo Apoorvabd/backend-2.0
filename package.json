@@ -1,0 +1,18 @@
+{
+  "name": "seting-up-profesniolly",
+  "version": "1.0.0",
+  "description": "going to learn it from scratch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "no"
+  },
+  "keywords": [
+    "no"
+  ],
+  "author": "",
+  "license": "ISC"
+}
