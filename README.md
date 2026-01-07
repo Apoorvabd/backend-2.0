@@ -238,17 +238,14 @@ Packages application with dependencies.
 Tiffin box 🍱
 
 ---
+Backend, System Design & DevOps Fundamentals
+===========================================
 
-## 🔁 22. CI/CD Pipelines
-
-Automates testing & deployment.
-
-```bash
 Code → Test → Build → Deploy
 
 
-## 22. CI/CD Pipelines
-
+22. CI/CD Pipelines
+------------------
 CI/CD automates the process of building, testing, and deploying applications.
 
 CI (Continuous Integration):
@@ -259,7 +256,7 @@ CD (Continuous Deployment):
 - Code is automatically deployed to production
 
 Pipeline Flow:
-Code Push -> Tests -> Build -> Deploy
+Code -> Test -> Build -> Deploy
 
 Tools:
 - GitHub Actions
@@ -269,10 +266,9 @@ Tools:
 Analogy:
 Factory assembly line
 
----
 
-## 23. Linux Command Line & Bash Scripting
-
+23. Linux Command Line & Bash Scripting
+--------------------------------------
 Linux is the backbone of most production servers.
 
 Common Commands:
@@ -286,25 +282,23 @@ top  -> system usage
 Bash Scripting:
 Used to automate repetitive tasks like backups, deployments, and monitoring.
 
----
 
-## 24. Basic Cloud Services (AWS / GCP / Azure)
-
+24. Basic Cloud Services (AWS / GCP / Azure)
+-------------------------------------------
 Cloud platforms provide scalable, on-demand infrastructure.
 
 Core Services:
-- Compute: EC2 / Virtual Machines
-- Storage: S3 / Blob Storage
-- Database: RDS / Cloud SQL
+- Compute    : EC2 / Virtual Machines
+- Storage   : S3 / Blob Storage
+- Database  : RDS / Cloud SQL
 - Networking: VPC
 
 Analogy:
 Renting resources instead of owning hardware
 
----
 
-## 25. Vertical vs Horizontal Scaling
-
+25. Vertical vs Horizontal Scaling
+---------------------------------
 Vertical Scaling:
 - Increase CPU, RAM of a single machine
 - Limited scalability
@@ -316,10 +310,9 @@ Horizontal Scaling:
 Analogy:
 One powerful worker vs many workers
 
----
 
-## 26. Database Sharding & Replication
-
+26. Database Sharding & Replication
+----------------------------------
 Replication:
 - Multiple copies of the same data
 - Improves availability and fault tolerance
@@ -331,10 +324,9 @@ Sharding:
 Analogy:
 Photocopies + files divided by sections
 
----
 
-## 27. Connection Pooling
-
+27. Connection Pooling
+---------------------
 Connection Pooling reuses database connections instead of creating new ones.
 
 Why Needed:
@@ -348,10 +340,9 @@ Tools:
 Analogy:
 Taxi stand instead of booking a new taxi every time
 
----
 
-## 28. Testing (Unit, Integration, Load)
-
+28. Testing (Unit, Integration, Load)
+------------------------------------
 Unit Testing:
 - Tests individual functions or modules
 
@@ -365,10 +356,9 @@ Tools:
 - k6
 - JMeter
 
----
 
-## 29. Logging Practices (Structured Logging)
-
+29. Logging Practices (Structured Logging)
+-----------------------------------------
 Logging helps debug and monitor applications.
 
 Best Practices:
@@ -380,10 +370,9 @@ Best Practices:
 Analogy:
 CCTV recordings
 
----
 
-## 30. Monitoring & Alerts
-
+30. Monitoring & Alerts
+----------------------
 Monitoring tracks system health and performance in real time.
 
 Key Metrics:
@@ -401,4 +390,3 @@ Tools:
 
 Analogy:
 Car dashboard warning system
-
