@@ -28,30 +28,31 @@ It supports **video uploads, tweets, comments, likes, views, subscriptions, auth
 
 
 
-## 📁 Project Structure
+**Repository Structure (tree)**
+
+```text
 srcc/
-├── app.js # Express app & route mounting
-├── index.js # Server bootstrap & DB connection
+├── app.js                # Express app & route mounting
+├── index.js              # Server bootstrap & DB connection
 ├── db/
-│ └── index.js # MongoDB connection helper
-├── models/ # Mongoose models
-│ ├── user.model.js
-│ ├── video.model.js
-│ ├── comment.model.js
-│ ├── like.model.js
-│ ├── subscription.model.js
-│ ├── tweet.model.js
-│ └── playlist.model.js
-├── controllers/ # Business logic
-├── routes/ # API routes
-├── middlewares/ # Auth & upload middleware
-├── utils/ # Helpers (ApiError, ApiResponse, asyncHandler)
+│   └── index.js          # MongoDB connection helper
+├── models/               # Mongoose models
+│   ├── user.model.js
+│   ├── video.model.js
+│   ├── comment.model.js
+│   ├── like.model.js
+│   ├── subscription.model.js
+│   ├── tweet.model.js
+│   └── playlist.model.js
+├── controllers/          # Business logic
+├── routes/               # API routes
+├── middlewares/          # Auth & upload middleware
+├── utils/                # Helpers (ApiError, ApiResponse, asyncHandler)
 └── constants.js
+
 public/
-└── temp/ # Temporary file storage (multer)
-
-
----
+└── temp/                 # Temporary file storage (multer)
+```
 
 ## 🔑 Authentication Flow
 
@@ -158,23 +159,21 @@ public/
 - Prevents race conditions
 
 ```js
+## Quick Design Notes & Setup
+
+```js
 { $inc: { views: 1 } }
+```
+
 ❤️ Like System Design
 
-## Likes are stored as separate documents
+- Likes are stored as separate documents (`Like` collection).
+- One like per user per entity (video/comment/tweet).
+- Toggle behavior implemented via `findOneAndDelete` and `create` if not exists.
 
-## One like per user per entity
+🌱 Environment Variables (create `.env` in repo root)
 
-Toggle behavior implemented via:
-
-findOneAndDelete
-
-create if not exists
-
-###🌱 Environment Variables
-
-Create a .env file in the root:
-
+```
 PORT=8000
 MONGODB_URI=mongodb://localhost:27017
 ACCESS_TOKEN_SECRET=your_access_secret
@@ -185,55 +184,39 @@ CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
 CORS_ORIGIN=http://localhost:3000
+```
 
-### ⚙️ Installation & Setup
+⚙️ Installation & Setup
+
+```bash
 npm install
 npm run dev
+```
 
-
-Server runs on http://localhost:8000
-
-MongoDB must be running locally or remotely
-
-Cloudinary credentials required for uploads
+- Server runs on http://localhost:8000
+- MongoDB must be running locally or remotely
+- Cloudinary credentials required for uploads
 
 🧪 Development Practices
 
-Feature-based folder organization
-
-Centralized error handling
-
-Consistent API responses
-
-Async error safety via wrapper
-
-Secure authentication flow
+- Feature-based folder organization
+- Centralized error handling (recommended)
+- Consistent API responses via `ApiResponse`
+- Async error safety via `asyncHandler` wrapper
+- Secure authentication flow with access + refresh tokens
 
 🚧 Future Enhancements
 
-Channel analytics (monthly growth)
-
-Watch-time based views
-
-Redis-based counters
-
-Rate limiting
-
-Request validation
-
-Swagger / OpenAPI docs
-
-Automated tests & CI pipeline
+- Channel analytics (monthly growth)
+- Watch-time based views
+- Redis-based counters for high-performance metrics
+- Rate limiting and request throttling
+- Request validation (e.g., Joi / express-validator)
+- Swagger / OpenAPI docs
+- Automated tests & CI pipeline
 
 📌 Final Note
 
-This backend is designed to be scalable, readable, and production-ready.
-It can serve as the foundation for a full-fledged media platform or as a strong portfolio project.
+This backend is designed to be scalable, readable, and production-ready. It can serve as the foundation for a full-fledged media platform or as a strong portfolio project.
 
 ⭐ If you found this useful, consider starring the repository!
-
-
----
-
-
-
