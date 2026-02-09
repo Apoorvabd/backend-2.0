@@ -1,4 +1,4 @@
-class apiresponce{
+class ApiResponse{
     constructor(statuscode,
         data,
         message="success",
@@ -9,3 +9,4 @@ class apiresponce{
         this.success=true;
     }
 }
+export default ApiResponse

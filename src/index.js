@@ -20,6 +20,9 @@ connectDB()
     console.log(`your process in failed`,err);
 })
 
+console.log("API_KEY:", process.env.API_KEY);
+
+
 
 // const app=express();
 

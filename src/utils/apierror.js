@@ -1,4 +1,4 @@
-class  Apierror extends Error{
+class  apiError extends Error{
     constructor(
         statuscode,
         message="kuch to glt hai bhai",
@@ -20,4 +20,4 @@ class  Apierror extends Error{
         }
     }
 } 
-export default Apierror;
+export default apiError;
