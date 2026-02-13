@@ -43,15 +43,17 @@ const toggleSubscription = asyncHandler(async (req, res) => {
 });
 
 // Get subscriber list of a channel
+
 const getUserChannelSubscribers = asyncHandler(async (req, res) => {
   const { channelId } = req.params;
 
-  if (!isValidObjectId(channelId)) {
+  if (!isValidObjectId(new mongoose.Types.ObjectId(channelId))) {
     throw new ApiError(400, "Invalid channelId");
+
   }
 
   const list = await Subscription.aggregate([
-    { $match: { channel: mongoose.Types.ObjectId(channelId) } },
+    { $match: { channel: (channelId) } },
     {
       $lookup: {
         from: "users",
@@ -82,7 +84,7 @@ const getSubscribedChannels = asyncHandler(async (req, res) => {
   const subscriberId = req.user._id; // always use authenticated user
 
   const list = await Subscription.aggregate([
-    { $match: { subscriber: mongoose.Types.ObjectId(subscriberId) } },
+    { $match: { subscriber: (subscriberId) } },
     {
       $lookup: {
         from: "users",

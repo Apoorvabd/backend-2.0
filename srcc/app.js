@@ -9,8 +9,8 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(express.json({limit: "16kb"}))
-app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(express.json({ limit: "16kb" }))
+app.use(express.urlencoded({ extended: true, limit: "16kb" }))
 app.use(express.static("public"))
 app.use(cookieParser())
 
@@ -42,5 +42,33 @@ app.use("/api/v1/playlist", playlistRouter)
 app.use("/api/v1/dashboard", dashboardRouter)
 
 // http://localhost:8000/api/v1/users/register
+
+import multer from "multer";
+
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        // A Multer error occurred when uploading.
+        if (err.code === "LIMIT_UNEXPECTED_FILE") {
+            return res.status(400).json({
+                message: "Unexpected field in form-data",
+                field: err.field,
+                error: err.code
+            });
+        }
+        return res.status(400).json({
+            message: "Multer Error",
+            error: err.message,
+            code: err.code
+        });
+    } else if (err) {
+        // An unknown error occurred when uploading.
+        console.error("Global Error Handler:", err);
+        return res.status(500).json({
+            message: "Internal Server Error",
+            error: err.message
+        });
+    }
+    next();
+});
 
 export { app }

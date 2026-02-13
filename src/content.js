@@ -1,1 +1,0 @@
-export const DB_NAME="videotube_by_abd";

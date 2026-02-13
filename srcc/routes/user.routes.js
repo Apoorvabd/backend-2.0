@@ -1,51 +1,40 @@
-import { Router } from "express";
-import {
-  loginUser,
-  logoutUser,
-  registerUser,
-  refreshAccessToken,
-  changeCurrentPassword,
-  getCurrentUser,
-  updateUserAvatar,
-  updateUserCoverImage,
-  getUserChannelProfile,
-  getWatchHistory,
-  updateAccountDetails
-} from "../controllers/user.controller.js";
-
-import {upload} from "../middlewares/multer.middleware.js"
+import express from "express";
+import { upload } from "../middlewares/upload.middleware.js";
+import { registerUser,
+    loginUser,
+    logoutUser,
+    refreshAccessToken,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateUserAvatar,
+    updateUserCoverImage,
+    getUserChannelProfile,
+    getWatchHistory ,
+    generateAccessAndRefereshTokens
+    } from "../controllers/user.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
-const router = Router()
 
-router.route("/register").post(
-    upload.fields([
-        {
-            name: "avatar",
-            maxCount: 1
-        }, 
-        {
-            name: "coverImage",
-            maxCount: 1
-        }
-    ]),
-    registerUser
-    )
 
-router.route("/login").post(loginUser)
 
-//secured routes
-router.route("/logout").post(verifyJWT,  logoutUser)
-router.route("/refresh-token").post(refreshAccessToken)
-router.route("/change-password").post(verifyJWT, changeCurrentPassword)
-router.route("/current-user").get(verifyJWT, getCurrentUser)
-router.route("/update-account").patch(verifyJWT, updateAccountDetails)
+const router = express.Router();
+router.get("/me", verifyJWT, getCurrentUser);
 
-router.route("/avatar").patch(verifyJWT, upload.single("avatar"), updateUserAvatar)
-router.route("/cover-image").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage)
+router.post(
+  "/register",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "coverImage", maxCount: 1 }
+  ]),
+  registerUser  
+);
 
-router.route("/c/:username").get(verifyJWT, getUserChannelProfile)
-router.route("/history").get(verifyJWT, getWatchHistory)
+router.post("/login", loginUser);
+router.post("/logout", verifyJWT, logoutUser);
+router.post("/refreshtoken",generateAccessAndRefereshTokens)
+router.post("/changepass",changeCurrentPassword)
+router.post("/getuser",getCurrentUser)
 
-export default router
+export default router;
